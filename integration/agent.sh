@@ -10,6 +10,10 @@ install() {
 
 }
 
+docker-run(){
+    docker run -e antonyjreynolds/connectivityagent
+
+}
 start() {
     cd oic_conn_agent_installer
     java -jar connectivityagent.jar
