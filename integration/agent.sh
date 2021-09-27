@@ -9,11 +9,11 @@ install() {
     vi oic_conn_agent_installer/InstallerProfile.cfg
 
 }
-
-docker-run(){
-    docker run -e antonyjreynolds/connectivityagent
-
+log-dir(){
+    cd oic_conn_agent_installer/agenthome/logs;
+    ll
 }
+
 start() {
     cd oic_conn_agent_installer
     java -jar connectivityagent.jar
