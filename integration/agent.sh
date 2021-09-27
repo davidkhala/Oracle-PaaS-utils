@@ -9,23 +9,30 @@ install() {
     vi oic_conn_agent_installer/InstallerProfile.cfg
 
 }
-log-dir(){
-    cd oic_conn_agent_installer/agenthome/logs;
+log-dir() {
+    cd oic_conn_agent_installer/agenthome/logs
     ll
 }
 
-start() {
+_start() {
     cd oic_conn_agent_installer
-    nohup java -jar connectivityagent.jar &
-    
+    nohup java -jar connectivityagent.jar &>>nohup.out &
+    cd -
 }
 
-terminate() {
-    kill $(ps -fC "java" | grep "connectivityagent.jar" | awk '{ print $2; }') || true
+_stop() {
+    pid=$(ps -fC "java" | grep "connectivityagent.jar" | awk '{ print $2; }')
+
+    if [ -n "$pid" ]; then
+        kill $pid
+    fi
+
+}
+_restart() {
+    _stop
+    echo "Waiting for 45 seconds is required before next start..."
     sleep 45
+    _start
 }
-restart(){
-    terminate
-    start
-}
+
 $1
