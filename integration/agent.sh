@@ -19,7 +19,7 @@ start() {
     nohup java -jar connectivityagent.jar &
     tail -f nohup.out
 }
-kill(){
+terminate() {
     kill $(ps -fC "java" | grep "connectivityagent.jar" | awk '{ print $2; }')
 
 }
