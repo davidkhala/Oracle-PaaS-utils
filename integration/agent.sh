@@ -15,14 +15,14 @@ log-dir(){
 }
 
 start() {
-    cd oic_conn_agent_installer && nohup java -jar connectivityagent.jar &
+    cd oic_conn_agent_installer
+    nohup java -jar connectivityagent.jar &
     
 }
 
 terminate() {
     kill $(ps -fC "java" | grep "connectivityagent.jar" | awk '{ print $2; }') || true
     sleep 45
-
 }
 restart(){
     terminate
