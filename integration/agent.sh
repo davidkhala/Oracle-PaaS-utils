@@ -16,6 +16,7 @@ log-dir(){
 
 start() {
     cd oic_conn_agent_installer
-    java -jar connectivityagent.jar
+    nohup java -jar connectivityagent.jar &
+    tail -f nohup.out
 }
 $1
