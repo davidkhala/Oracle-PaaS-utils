@@ -19,6 +19,9 @@ start() {
     nohup java -jar connectivityagent.jar &
     tail -f nohup.out
 }
+restart(){
+    kill $(ps -fC "java" | grep "connectivityagent.jar" | awk '{ print $2; }') || true && cd oic_conn_agent_installer && nohup java -jar connectivityagent.jar &
+}
 terminate() {
     kill $(ps -fC "java" | grep "connectivityagent.jar" | awk '{ print $2; }')
 
