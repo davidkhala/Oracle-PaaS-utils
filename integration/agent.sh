@@ -1,7 +1,8 @@
 set -e
 install() {
     # The agent is only certified with Oracle JDK Version 11
-    wget https://objectstorage.ap-seoul-1.oraclecloud.com/n/cn9yc2hk0gzg/b/java/o/jdk-11_linux-x64_bin.rpm
+    sudo yum install -y jdk-11
+    
     wget https://objectstorage.ap-seoul-1.oraclecloud.com/n/cn9yc2hk0gzg/b/oci-material/o/oic_conn_agent_installer.zip
     unzip oic_conn_agent_installer.zip -d oic_conn_agent_installer
     rm oic_conn_agent_installer.zip jdk-11_linux-x64_bin.rpm
