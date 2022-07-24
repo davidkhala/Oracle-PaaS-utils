@@ -1,7 +1,0 @@
-{
-  "name": "@davidkhala/oci-content",
-  "version": "1.0.0",
-  "dependencies": {
-    "@oracle/content-management-sdk": "latest"
-  }
-}
