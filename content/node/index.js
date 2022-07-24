@@ -2,7 +2,7 @@ import {axiosPromise} from '@davidkhala/axios';
 
 export class Content {
     /**
-     *
+     * TODO @deprecated base auth is going to be deprecated, migrate to OAuth2
      * @param username
      * @param password
      * @param tenancy tenancy name, not OCID
