@@ -4,6 +4,7 @@ from content.py.http_request import Request
 class Base:
     tenancy_name: str
     instance_name: str
+    auth: dict
 
     def __init__(self, tenancy_name: str, instance_name: str):
         self.tenancy_name = tenancy_name
@@ -14,10 +15,10 @@ class Base:
 
     # TODO @deprecated Basic AuthN should be migrated to OAuth2
     def login(self, username, password):
-        url = self.url() + '/documents/api/1.2/folders/items'
-        auth = {
+        url = self.url() + '/documents/api/1.2/folders/self'
+        self.auth = {
             'username': username,
             'password': password,
         }
-        request = Request(url, auth)
+        request = Request(url, self.auth)
         return request.get()
