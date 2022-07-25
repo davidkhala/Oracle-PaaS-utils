@@ -18,12 +18,12 @@ class Folder(Base):
         request = Request(url, self.auth)
         return request.get()['items']
 
-    def create(self, name: str, description='', parent_id='self'):
+    def create(self, name: str, description='', parent_folder_id='self'):
         options = {
             'name': name,
             'description': description
         }
-        url = self.base_url() + parent_id
+        url = self.base_url() + parent_folder_id
 
         request = Request(url, self.auth)
         result = request.post(options)
@@ -36,7 +36,6 @@ class Folder(Base):
         }
 
     def delete(self, folder_id: str):
-        # /documents/api/1.2/folders/{folderId}
         url = self.base_url() + folder_id
         request = Request(url, self.auth)
         result = request.delete()

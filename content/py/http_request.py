@@ -1,5 +1,6 @@
 import requests
 from requests.auth import HTTPBasicAuth
+from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 
 class Request:
@@ -14,6 +15,10 @@ class Request:
 
     def post(self, json=None, data=None, **kwargs):
         kwargs.setdefault('auth', getattr(self, 'auth', None))
+        if data is not None:
+            m = MultipartEncoder(data)
+            kwargs.setdefault('headers', {'Content-Type': m.content_type})
+            data = m
         return requests.post(self.url, data, json, **kwargs).json()
 
     def delete(self, **kwargs):
