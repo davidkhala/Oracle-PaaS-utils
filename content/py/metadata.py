@@ -5,12 +5,15 @@ class Metadata(Base):
     def base_url(self):
         return super().url() + '/documents/api/1.2/metadata/'
 
-    def create(self, collection_name, schema={}, is_private=True):
-
+    @staticmethod
+    def name(collection_name: str, is_private: bool):
         if is_private:
-            collection_name = 'Personal.' + collection_name
+            return 'Personal.' + collection_name
+        else:
+            return collection_name
 
-        url = self.base_url() + collection_name
+    def create(self, collection_name: str, is_private=True, schema={}):
+        url = self.base_url() + Metadata.name(collection_name, is_private)
 
         fields_array = []
 
@@ -21,4 +24,9 @@ class Metadata(Base):
                 'defaultValue': value
             })
         r = super().post(url, {"fieldsArray": fields_array})
+        return r
+
+    def delete(self, collection_name, is_private=True):
+        url = self.base_url() + Metadata.name(collection_name, is_private)
+        r = super().delete(url)
         return r

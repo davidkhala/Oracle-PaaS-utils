@@ -31,7 +31,9 @@ class FolderTest(unittest.TestCase):
     def test_meta(self):
         meta = Metadata('hktwlab', 'cx')
         meta.login('david.yx.liu@oracle.com', os.getenv('password'))
-        meta.create('testCollection')
+        name = 'testCollection'
+        meta.create(name)
+        meta.delete(name)
 
 
 if __name__ == '__main__':
