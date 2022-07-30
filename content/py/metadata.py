@@ -23,10 +23,10 @@ class Metadata(Base):
                 'fieldType': type(value),
                 'defaultValue': value
             })
-        r = super().post(url, {"fieldsArray": fields_array})
+        r = super()._post(url, {"fieldsArray": fields_array})
         return r
 
     def delete(self, collection_name, is_private=True):
         url = self.base_url() + Metadata.name(collection_name, is_private)
-        r = super().delete(url)
+        r = super()._delete(url)
         return r

@@ -17,23 +17,23 @@ class File(Base):
         }
 
         try:
-            r = super().post(url, None, form)
+            r = super()._post(url, None, form)
         finally:
             fs.close()
         return r['id']
 
     def delete(self, file_id: str):
         url = self.base_url() + file_id
-        return super().delete(url)
+        return super()._delete(url)
 
     def tag(self, file_id: str, tags: [str]):
         url = self.base_url() + file_id + '/tags'
         data = {
             'setTags': ','.join(tags)
         }
-        return super().post(url, data)
+        return super()._post(url, data)
 
     def tag_list(self, file_id: str):
         url = self.base_url() + file_id + '/tags'
-        r = super().get(url)
+        r = super()._get(url)
         return r['tags'].split(',')

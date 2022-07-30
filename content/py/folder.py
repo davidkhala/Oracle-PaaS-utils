@@ -1,5 +1,4 @@
 from content.py import Base
-from content.py.http_request import Request
 
 
 class Folder(Base):
@@ -9,24 +8,20 @@ class Folder(Base):
 
     def get(self, folder_id: str):
         url = self.base_url() + folder_id
-
-        request = Request(url, self.auth)
-        return request.get()
+        return self._get(url)
 
     def list(self, folder_id='self'):
         url = self.base_url() + folder_id + '/items'
-        request = Request(url, self.auth)
-        return request.get()['items']
+        return self._get(url)['items']
 
     def create(self, name: str, description='', parent_folder_id='self'):
-        options = {
+        data = {
             'name': name,
             'description': description
         }
         url = self.base_url() + parent_folder_id
 
-        request = Request(url, self.auth)
-        result = request.post(options)
+        result = self._post(url, data)
 
         if result['errorCode'] != '0':
             raise Exception(result)
@@ -37,7 +32,6 @@ class Folder(Base):
 
     def delete(self, folder_id: str):
         url = self.base_url() + folder_id
-        request = Request(url, self.auth)
-        result = request.delete()
+        result = self._delete(url)
         if result['errorCode'] != '0':
             raise Exception(result)

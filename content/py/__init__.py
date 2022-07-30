@@ -1,3 +1,5 @@
+import requests
+
 from content.py.http_request import Request
 
 
@@ -18,19 +20,19 @@ class Base:
         if r['errorCode'] != '0':
             raise Exception(r)
 
-    def get(self, url: str, params=None):
+    def _get(self, url: str, params=None):
         request = Request(url, self.auth)
         r = request.get(params)
         Base.throw_if_error(r)
         return r
 
-    def post(self, url: str, json, data=None):
+    def _post(self, url: str, json, data=None):
         request = Request(url, self.auth)
         r = request.post(json, data)
         Base.throw_if_error(r)
         return r
 
-    def delete(self, url: str):
+    def _delete(self, url: str):
         request = Request(url, self.auth)
         r = request.delete()
         Base.throw_if_error(r)
@@ -40,10 +42,19 @@ class Base:
     def login(self, username, password):
         if password is None:
             raise Exception('missing password')
+
+        if hasattr(self, 'auth'):
+            return
         url = self.url() + '/documents/api/1.2/folders/self'
-        self.auth = {
+        auth = {
             'username': username,
             'password': password,
         }
-        request = Request(url, self.auth)
-        return request.get()
+        request = Request(url, auth)
+        try:
+            request.get()
+        except requests.exceptions.JSONDecodeError:
+            if hasattr(self, 'auth'):
+                del self.auth
+        else:
+            self.auth = auth

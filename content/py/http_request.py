@@ -10,11 +10,18 @@ class Request:
             self.auth = HTTPBasicAuth(auth['username'], auth['password'])
 
     def get(self, params=None, **kwargs):
-        kwargs.setdefault('auth', getattr(self, 'auth', None))
-        return requests.get(self.url, params, **kwargs).json()
+        if hasattr(self, 'auth'):
+            kwargs.setdefault('auth', self.auth)
+        try:
+            r = requests.get(self.url, params, **kwargs)
+        except Exception as e:
+            print(e)
+        else:
+            r.json()
 
     def post(self, json=None, data=None, **kwargs):
-        kwargs.setdefault('auth', getattr(self, 'auth', None))
+        if hasattr(self, 'auth'):
+            kwargs.setdefault('auth', self.auth)
         if data is not None:
             m = MultipartEncoder(data)
             kwargs.setdefault('headers', {'Content-Type': m.content_type})
@@ -22,5 +29,6 @@ class Request:
         return requests.post(self.url, data, json, **kwargs).json()
 
     def delete(self, **kwargs):
-        kwargs.setdefault('auth', getattr(self, 'auth', None))
+        if hasattr(self, 'auth'):
+            kwargs.setdefault('auth', self.auth)
         return requests.delete(self.url, **kwargs).json()
