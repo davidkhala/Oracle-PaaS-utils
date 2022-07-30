@@ -10,15 +10,12 @@ class FolderTest(unittest.TestCase):
     file = File('hktwlab', 'cx')
     meta = Metadata('hktwlab', 'cx')
 
-    # def __init__(self):
-    #     super().__init__()
-
     def test_folder(self):
         self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
         create_recipe = self.folder.create('new-folder1')
         print(create_recipe)
         new_created = create_recipe['id']
-        self.folder._delete(new_created)
+        self.folder.delete(new_created)
         result = self.folder.list('self')
         print(result)
 
@@ -30,7 +27,7 @@ class FolderTest(unittest.TestCase):
         self.file.tag(_id, tags)
         result = self.file.tag_list(_id)
         print(result)
-        self.file._delete(_id)
+        self.file.delete(_id)
 
     def test_meta_create(self):
         self.meta.login('david.yx.liu@oracle.com', os.getenv('password'))
@@ -40,7 +37,7 @@ class FolderTest(unittest.TestCase):
     def test_meta_delete(self):
         self.meta.login('david.yx.liu@oracle.com', os.getenv('password'))
         name = 'testCollection'
-        self.meta._delete(name)
+        self.meta.delete(name)
 
 
 if __name__ == '__main__':
