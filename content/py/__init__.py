@@ -16,27 +16,30 @@ class Base:
         return "https://{}-{}.cec.ocp.oraclecloud.com".format(self.instance_name, self.tenancy_name)
 
     @staticmethod
-    def throw_if_error(r: dict):
-        if r['errorCode'] != '0':
+    def throw_if_error(r: requests.Response):
+        if r.status_code == 401:
             raise Exception(r)
+        else:
+            _json = r.json()
+            if _json['errorCode'] != '0':
+                raise Exception(r)
+
+        return _json
 
     def _get(self, url: str, params=None):
         request = Request(url, self.auth)
         r = request.get(params)
-        Base.throw_if_error(r)
-        return r
+        return Base.throw_if_error(r)
 
     def _post(self, url: str, json, data=None):
         request = Request(url, self.auth)
         r = request.post(json, data)
-        Base.throw_if_error(r)
-        return r
+        return Base.throw_if_error(r)
 
     def _delete(self, url: str):
         request = Request(url, self.auth)
         r = request.delete()
-        Base.throw_if_error(r)
-        return r
+        return Base.throw_if_error(r)
 
     # TODO @deprecated Basic AuthN should be migrated to OAuth2
     def login(self, username, password):
@@ -51,10 +54,9 @@ class Base:
             'password': password,
         }
         request = Request(url, auth)
-        try:
-            request.get()
-        except requests.exceptions.JSONDecodeError:
-            if hasattr(self, 'auth'):
-                del self.auth
+
+        r = request.get()
+        if r.status_code == 401 and hasattr(self, 'auth'):
+            del self.auth
         else:
             self.auth = auth

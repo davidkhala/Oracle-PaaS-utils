@@ -12,12 +12,7 @@ class Request:
     def get(self, params=None, **kwargs):
         if hasattr(self, 'auth'):
             kwargs.setdefault('auth', self.auth)
-        try:
-            r = requests.get(self.url, params, **kwargs)
-        except Exception as e:
-            print(e)
-        else:
-            r.json()
+        return requests.get(self.url, params, **kwargs)
 
     def post(self, json=None, data=None, **kwargs):
         if hasattr(self, 'auth'):
@@ -26,9 +21,9 @@ class Request:
             m = MultipartEncoder(data)
             kwargs.setdefault('headers', {'Content-Type': m.content_type})
             data = m
-        return requests.post(self.url, data, json, **kwargs).json()
+        return requests.post(self.url, data, json, **kwargs)
 
     def delete(self, **kwargs):
         if hasattr(self, 'auth'):
             kwargs.setdefault('auth', self.auth)
-        return requests.delete(self.url, **kwargs).json()
+        return requests.delete(self.url, **kwargs)
