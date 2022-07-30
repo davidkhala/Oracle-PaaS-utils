@@ -2,6 +2,7 @@ import unittest
 import os
 from content.py.folder import Folder
 from content.py.file import File
+from content.py.metadata import Metadata
 
 
 class FolderTest(unittest.TestCase):
@@ -21,7 +22,16 @@ class FolderTest(unittest.TestCase):
         file.login('david.yx.liu@oracle.com', os.getenv('password'))
         path = 'dummy.txt'
         _id = file.upload(path)
+        tags = ['file', 'metadata']
+        file.tag(_id, tags)
+        result = file.tag_list(_id)
+        print(result)
         file.delete(_id)
+
+    def test_meta(self):
+        meta = Metadata('hktwlab', 'cx')
+        meta.login('david.yx.liu@oracle.com', os.getenv('password'))
+        meta.create('testCollection')
 
 
 if __name__ == '__main__':
