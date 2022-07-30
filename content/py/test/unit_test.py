@@ -9,6 +9,7 @@ class FolderTest(unittest.TestCase):
     folder = Folder('hktwlab', 'cx')
     file = File('hktwlab', 'cx')
     meta = Metadata('hktwlab', 'cx')
+    collection_name = 'testCollection'
 
     def test_folder(self):
         self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
@@ -31,13 +32,11 @@ class FolderTest(unittest.TestCase):
 
     def test_meta_create(self):
         self.meta.login('david.yx.liu@oracle.com', os.getenv('password'))
-        name = 'testCollection'
-        self.meta.create(name)
+        self.meta.create(self.collection_name)
 
     def test_meta_delete(self):
         self.meta.login('david.yx.liu@oracle.com', os.getenv('password'))
-        name = 'testCollection'
-        self.meta.delete(name)
+        self.meta.delete(self.collection_name)
 
 
 if __name__ == '__main__':
