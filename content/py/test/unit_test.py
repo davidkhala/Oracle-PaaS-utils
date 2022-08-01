@@ -10,24 +10,30 @@ class FolderTest(unittest.TestCase):
     file = File('hktwlab', 'cx')
     meta = Metadata('hktwlab', 'cx')
     collection_name = 'testCollection'
+    folder_name = 'new-folder1'
 
-    def test_folder(self):
+    def test_folder_create(self):
         self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
-        create_recipe = self.folder.create('new-folder1')
-        print(create_recipe)
-        new_created = create_recipe['id']
-        self.folder.delete(new_created)
-        result = self.folder.list('self')
-        print(result)
+        create_recipe = self.folder.create(self.folder_name)
+        folder_id = create_recipe['id']
+        print(folder_id)
 
-    def test_file(self):
+    def test_folder_delete(self):
+        self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
+        folder_id = 'FED63BC68B0829EDA2BFE9137B180A3EF35DA9FF09F7'
+        self.folder.delete(folder_id)
+
+    def test_file_upload(self):
         self.file.login('david.yx.liu@oracle.com', os.getenv('password'))
         path = 'dummy.txt'
         _id = self.file.upload(path)
         tags = ['file', 'metadata']
         self.file.tag(_id, tags)
-        result = self.file.tag_list(_id)
-        print(result)
+        print(_id)
+
+    def test_file_delete(self):
+        self.file.login('david.yx.liu@oracle.com', os.getenv('password'))
+        _id = 'D13EE6B35047D33B7343AE232D9F80F75672606D174E'
         self.file.delete(_id)
 
     def test_meta_create(self):
