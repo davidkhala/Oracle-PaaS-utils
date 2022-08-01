@@ -22,7 +22,7 @@ class Base:
         else:
             _json = r.json()
             if _json['errorCode'] != '0':
-                raise Exception(r)
+                raise Exception(_json)
 
         return _json
 

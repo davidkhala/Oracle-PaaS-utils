@@ -1,3 +1,5 @@
+import datetime
+
 from content.py import Base
 
 
@@ -12,7 +14,20 @@ class Metadata(Base):
         else:
             return collection_name
 
-    def create(self, collection_name: str, is_private=True, schema={}):
+    @staticmethod
+    def type(value):
+        _type = type(value)
+        if _type == int or _type == float:
+            return 'number'
+        if _type == datetime.datetime:
+            return 'date'
+        if _type == str:
+            return 'text'
+        if _type == bool:
+            return 'boolean'
+
+    # schema is a must to make a valid collection
+    def create(self, collection_name: str, schema: dict, is_private=True):
         url = self.base_url() + Metadata.name(collection_name, is_private)
 
         fields_array = []
@@ -20,10 +35,15 @@ class Metadata(Base):
         for key, value in schema.items():
             fields_array.append({
                 'fieldName': key,
-                'fieldType': type(value),
+                'fieldType': Metadata.type(value),
                 'defaultValue': value
             })
         r = super()._post(url, {"fieldsArray": fields_array})
+        return r
+
+    def list(self):
+        url = self.base_url()
+        r = super()._get(url)
         return r
 
     def delete(self, collection_name, is_private=True):
