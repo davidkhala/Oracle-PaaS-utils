@@ -7,7 +7,7 @@ class Folder(Base):
     def base_url(self):
         return super().url() + '/documents/api/1.2/folders/'
 
-    def define_metadata(self, folder_id: str, collection_name: str, values: dict, is_private=True):
+    def define_metadata(self, folder_id: str, collection_name: str, values: dict, is_private=False):
         url = self.base_url() + folder_id + '/metadata/' + Metadata.name(collection_name, is_private)
         r1 = self._post(url, {})
         if values:
@@ -15,14 +15,13 @@ class Folder(Base):
         return r1
 
     # TODO Wait for support
-    def assign_metadata(self, folder_id: str, collection_name: str, values: dict, is_private=True):
+    def assign_metadata(self, folder_id: str, collection_name: str, values: dict, is_private=False):
         url = self.base_url() + folder_id + '/metadata'
 
         _prefix = Metadata.name(collection_name, is_private) + '.'
         data = {}
         for key, value in values.items():
-            data[_prefix + key] = Metadata.serialize_date(value)
-        print(url, data)
+            data[_prefix + key] = Metadata.serialize_value(value)
         return self._post(url, data)
 
     def get_metadata(self, folder_id: str):

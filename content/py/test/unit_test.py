@@ -37,9 +37,23 @@ class FolderTest(unittest.TestCase):
             "income": 10000,
         }
         self.folder.define_metadata(folder_id, self.collection_name, metadata)
+
         self.share.login('david.yx.liu@oracle.com', os.getenv('password'))
         link = self.share.folder(folder_id)
         print(link)
+
+    def test_folder_metadata(self):
+        self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
+        folder_id = 'FDA759AA8B3E04F584186E0AB6D947009D7EABC47F2A'
+        metadata = {
+            "personalId": "M123456",
+            'address': "HongKong",
+            "birthday": datetime.datetime.now(),
+            "income": 10000,
+        }
+        self.folder.assign_metadata(folder_id, self.collection_name, metadata)
+        actual = self.folder.get_metadata(folder_id)
+        print(actual)
 
     def test_file_upload(self):
         self.file.login('david.yx.liu@oracle.com', os.getenv('password'))

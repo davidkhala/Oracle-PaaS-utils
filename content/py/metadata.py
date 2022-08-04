@@ -27,13 +27,16 @@ class Metadata(Base):
             return 'boolean'
 
     @staticmethod
-    def serialize_date(value):
-        if type(value) == datetime.datetime:
+    def serialize_value(value):
+        _type = type(value)
+        if _type == datetime.datetime:
             return value.strftime("%Y-%m-%dT%H:%M:%S")
+        if _type == int or _type == float:
+            return str(value)
         return value
 
     # schema is a must to make a valid collection
-    def create(self, collection_name: str, schema: dict, is_private=True):
+    def create(self, collection_name: str, schema: dict, is_private=False):
         url = self.base_url() + Metadata.name(collection_name, is_private)
 
         fields_array = []
@@ -44,7 +47,7 @@ class Metadata(Base):
             fields_array.append({
                 'fieldName': key,
                 'fieldType': field_type,
-                'defaultValue': Metadata.serialize_date(value)
+                'defaultValue': Metadata.serialize_value(value)
             })
         r = super()._post(url, {"fieldsArray": fields_array})
         return r
@@ -54,7 +57,7 @@ class Metadata(Base):
         r = super()._get(url)
         return r
 
-    def delete(self, collection_name, is_private=True):
+    def delete(self, collection_name, is_private=False):
         url = self.base_url() + Metadata.name(collection_name, is_private)
         r = super()._delete(url)
         return r
