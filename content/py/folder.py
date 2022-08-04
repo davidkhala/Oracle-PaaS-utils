@@ -14,7 +14,6 @@ class Folder(Base):
             return self.assign_metadata(folder_id, collection_name, values, is_private)
         return r1
 
-    # TODO Wait for support
     def assign_metadata(self, folder_id: str, collection_name: str, values: dict, is_private=False):
         url = self.base_url() + folder_id + '/metadata'
 

@@ -77,7 +77,7 @@ class FolderTest(unittest.TestCase):
 
     def test_folder_delete(self):
         self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
-        folder_id = 'F82F1622088E1344EBAAE1D089729FCCA6DE185AC233'
+        folder_id = 'F42ADEF04FB0DFD65D1A9CD238CD2E54E27616779D95'
         self.folder.delete(folder_id)
 
     def test_file_delete(self):
