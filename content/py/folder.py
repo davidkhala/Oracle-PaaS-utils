@@ -47,9 +47,14 @@ class Folder(Base):
 
         if result['errorCode'] != '0':
             raise Exception(result)
+
+        _id = result['id']
+        file_url = super().url() + '/documents/folder/' + _id + "/_" + name
+
         return {
             'name': result['name'],
-            'id': result['id']
+            'id': _id,
+            'url': file_url
         }
 
     def delete(self, folder_id: str):

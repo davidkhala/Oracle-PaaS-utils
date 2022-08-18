@@ -20,7 +20,12 @@ class File(Base):
             r = super()._post(url, None, form)
         finally:
             fs.close()
-        return r['id']
+        _id = r['id']
+        file_url = super().url() + '/documents/fileview/' + _id
+        return {
+            'url': file_url,
+            'id': _id,
+        }
 
     def delete(self, file_id: str):
         url = self.base_url() + file_id

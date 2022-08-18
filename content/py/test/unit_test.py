@@ -28,8 +28,8 @@ class FolderTest(unittest.TestCase):
     def test_folder_create(self):
         self.folder.login('david.yx.liu@oracle.com', os.getenv('password'))
         create_recipe = self.folder.create(self.folder_name)
+        print(create_recipe['url'])
         folder_id = create_recipe['id']
-        print(folder_id)
         metadata = {
             "personalId": "M123456",
             'address': "HongKong",
