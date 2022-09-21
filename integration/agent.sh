@@ -6,7 +6,8 @@ install() {
     wget https://objectstorage.ap-singapore-1.oraclecloud.com/n/cn9yc2hk0gzg/b/oci-quickstart/o/oic_conn_agent_installer.zip
     unzip oic_conn_agent_installer.zip -d oic_conn_agent_installer
     rm oic_conn_agent_installer.zip
-    # Modify property `oic_URL` and `agent_GROUP_IDENTIFIER`
+    # 1. Modify property `oic_URL` and `agent_GROUP_IDENTIFIER`
+    # 2. Add property `oic_USER` and `oic_PASSWORD`
     vi oic_conn_agent_installer/InstallerProfile.cfg
 
 }
