@@ -2,7 +2,8 @@
 
 
 ## Oracle Analytic Server
-Access URL: `http://<OAS_Public_IP_Address>:9502/analytics`
+- Access URL: `http://<OAS_Public_IP_Address>:9502/analytics`
+- OAS is CPU-intensive
 
 ### Before you begin
 Oracle Analytics Server needs access to a oracle database deployed on OCI 
@@ -14,6 +15,11 @@ Oracle Analytics Server needs access to a oracle database deployed on OCI
 - The database must be a pluggable database (PDB)
   - DB connection string must be in format <hostname or IP address>:<port>:<PDB_name>.<DB_domain>
   - Please test database connection and database administrator credentials before deployment
+- Prepare an existing user with database administration privileges for OAS Domain Configuration
+
+Oracle Analytics Server Domain Configuration is a must for new OAS deployment
+- Skip only when creating an additional Oracle Analytics Server compute instance to scale out an existing Oracle Analytics Server deployment.
+- 
 
 
 
