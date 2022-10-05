@@ -12,3 +12,12 @@ Oracle Analytics Server installs several schemas on the Oracle Database and uses
 <YourSchemaPrefix>_STB        -- Service Table
 <YourSchemaPrefix>_WLS        -- WebLogic services
 ```
+
+
+## post deploy
+- install `sudo yum install -y libgfortran` if you want to use automated machine learning features
+### Access point
+OAS: http://<OAS_Public_IP_Address>:port/analytics
+
+Oracle Analytics Publisher: http://OAS_IP_address:Port/xmlpserver
+
