@@ -5,12 +5,3 @@ Points need to know more than Launch stack from OCI MarketPlace
     - Skip only when creating an additional Oracle Analytics Server compute instance to scale out an existing Oracle Analytics Server deployment.
 - Run [./oas.sh cleanup](https://github.com/davidkhala/oracle-PaaS-collection/blob/main/analytic/OAS/oas.sh) post deploy 
 
-
-
-## post deploy
-- install `sudo yum install -y libgfortran` if you want to use automated machine learning features
-
-
-
-
-
