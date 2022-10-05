@@ -7,6 +7,7 @@ cleanup(){
 }
 domain-status(){
   sudo su oracle
+  cat /var/log/oas_cloudinit.log
   cat /var/log/oas_create_domain.log
 }
 
