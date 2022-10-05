@@ -5,6 +5,9 @@ cleanup(){
   cd /u01/data
   rm biconfig.rsp
 }
-
+domain-status(){
+  sudo su oracle
+  cat /var/log/oas_create_domain.log
+}
 
 $@
