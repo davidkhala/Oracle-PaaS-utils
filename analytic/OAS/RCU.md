@@ -21,8 +21,6 @@ Oracle Analytics Server will install several schemas on the RCU Database and use
     - DB connection string must be in format `<hostname or IP address>:<port>:<PDB_name>.<DB_domain>`
     - Prepare an existing user with database administration privileges for OAS Domain Configuration
 2. Please test database connection and database administrator credentials before deployment. OAS stack will not dry-run automatically. 
-3. Opt-in Oracle Analytics Server Domain Configuration is a must for new OAS deployment
-    - Skip only when creating an additional Oracle Analytics Server compute instance to scale out an existing Oracle Analytics Server deployment.
 
 ## Limit
 - Autonomous DB is not certified as RCU DB
