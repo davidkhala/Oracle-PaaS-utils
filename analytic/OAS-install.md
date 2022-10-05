@@ -1,6 +1,8 @@
-## Product Schemas
+# OAS Installation
 
-Oracle Analytics Server installs several schemas on the Oracle Database and uses them to store various product metadata.
+### Product Schemas
+
+Oracle Analytics Server installs several schemas on the RCU Database and uses them to store various product metadata.
 
 ```
 <YourSchemaPrefix>_BIPLATFORM -- Oracle Analytics
@@ -16,8 +18,8 @@ Oracle Analytics Server installs several schemas on the Oracle Database and uses
 
 ## post deploy
 - install `sudo yum install -y libgfortran` if you want to use automated machine learning features
-### Access point
-OAS: http://<OAS_Public_IP_Address>:port/analytics
 
-Oracle Analytics Publisher: http://OAS_IP_address:Port/xmlpserver
+
+
+
 
