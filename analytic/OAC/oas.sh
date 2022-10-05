@@ -4,6 +4,8 @@ cleanup(){
   sudo su oracle
   cd /u01/data
   rm biconfig.rsp
+  
+  sudo yum install -y libgfortran # Enable automated machine learning features
 }
 domain-status(){
   sudo su oracle
