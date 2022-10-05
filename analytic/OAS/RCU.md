@@ -15,7 +15,7 @@ Oracle Analytics Server will install several schemas on the RCU Database and use
 
 
 ## Setup on OCI
-1. use a oracle database (VM or BM) deployed on OCI
+1. use a oracle database (VM DB or BM DB) deployed on OCI
     - [Set Up an Oracle Cloud Database](https://docs.oracle.com/en/middleware/bi/analytics-server/deploy-oas-cloud/deploy-oracle-analytics-server-oracle-cloud.html#GUID-C8C5D819-5EB5-4EE2-98EF-F6093E850B0E)
     - The ODB must be deployed in the same region as Oracle Analytics Server
     - DB connection string must be in format `<hostname or IP address>:<port>:<PDB_name>.<DB_domain>`
