@@ -5,6 +5,8 @@ Points need to know more than Launch stack from OCI MarketPlace
     - Skip only when creating an additional Oracle Analytics Server compute instance to scale out an existing Oracle Analytics Server deployment.
 - DB Admin user
     - it cannot be `sys`, `sys as sysdba`
-- reset the password for OS user `Oracle`. By default it is nopassword
+- Troubleshoot domain server
+    - `sudo passwd oracle`. By default it is nopassword
+        - password input of os user oracle is required by /u01/app/oas-scripts/create_oas_domain.sh
 - Run [./oas.sh cleanup](https://github.com/davidkhala/oracle-PaaS-collection/blob/main/analytic/OAS/oas.sh) post deploy 
 
