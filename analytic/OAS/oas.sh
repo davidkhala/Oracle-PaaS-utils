@@ -1,4 +1,9 @@
 set +x
+start(){
+  # /u01/data/domains/bi does not exist if installation doesn't success.
+  sudo su oracle
+  /u01/data/domains/bi/bitools/bin/start.sh
+}
 cleanup(){
   #  delete the domain configuration file biconfig.rsp. This file contains sensitive configuration information
   sudo su oracle
