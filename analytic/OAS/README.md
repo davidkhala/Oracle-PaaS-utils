@@ -6,7 +6,9 @@ Points need to know more than Launch stack from OCI MarketPlace
 - DB Admin user
     - it cannot be `sys`, `sys as sysdba`
 - Troubleshoot domain server
+    - Articulate user `oracle` to satisfy /u01/app/oas-scripts/create_oas_domain.sh
     - `sudo passwd oracle`. By default it is nopassword
-        - password input of os user oracle is required by /u01/app/oas-scripts/create_oas_domain.sh
+    - `oracle is not in the sudoers file`
+        
 - Run [./oas.sh cleanup](https://github.com/davidkhala/oracle-PaaS-collection/blob/main/analytic/OAS/oas.sh) post deploy 
 
