@@ -11,4 +11,4 @@ docker build -t rdg:latest .
 
 
 - system check will failed on docker when `Checking swap space: must be greater than 512 MB.   Actual 0 MB    Failed <<<< `
-  - We use 
+  - We use flag `-ignoreSysPrereqs` to skip this checking. 
