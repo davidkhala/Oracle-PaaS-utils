@@ -6,7 +6,7 @@
 ## Docker build
 ```
 cd analytic/RDG/
-docker build -t rdg:latest . 
+docker build -t rdg:latest . --progress=plain --no-cache
 ```
 
 

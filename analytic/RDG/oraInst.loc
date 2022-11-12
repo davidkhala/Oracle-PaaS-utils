@@ -1,2 +1,2 @@
-inventory_loc=/home/ubuntu/oraInventory
-inst_group=ubuntu
+inventory_loc=/home/opc/oraInventory
+inst_group=opc

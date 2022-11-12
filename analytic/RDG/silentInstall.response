@@ -4,7 +4,7 @@
 Response File Version=1.0.0.0.0
 
 [GENERIC]
-ORACLE_HOME=/home/ubuntu/Oracle/Middleware/Oracle_Home
+ORACLE_HOME=/home/opc/Oracle/Middleware/Oracle_Home
 SELECT_RD_VERSION_RADIO_V1=false
 CREDENTIALS_PAGE_ADMIN_USERNAME=admin
 CREDENTIALS_PAGE_PASSWORD=Admin123
