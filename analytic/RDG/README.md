@@ -5,10 +5,9 @@
 
 ## Docker build
 ```
-cd analytic/RDG/
-docker build -t rdg:latest . --progress=plain --no-cache
+./docker.sh build
 ```
-
-
+Tech notes
+- We have changed the $Oracle_Home/domain/bin/startJetty.sh to make it running in front, to fit container design
 - system check will failed on docker when `Checking swap space: must be greater than 512 MB.   Actual 0 MB    Failed <<<< `
   - We use flag `-ignoreSysPrereqs` to skip this checking. 
