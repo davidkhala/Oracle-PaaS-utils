@@ -3,6 +3,7 @@ FROM oraclelinux:9
 ARG USERNAME=opc
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
+ARG Oracle_Home=/home/${USERNAME}/Oracle/Middleware/Oracle_Home
 
 RUN groupadd --gid $USER_GID $USERNAME && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
@@ -16,4 +17,5 @@ RUN curl https://objectstorage.ap-singapore-1.oraclecloud.com/n/cn9yc2hk0gzg/b/e
 RUN chmod +x ~/DataGateway_Linux64.bin
 RUN ~/DataGateway_Linux64.bin -silent -ignoreSysPrereqs -responseFile ~/silentInstall.response
 RUN rm ~/DataGateway_Linux64.bin
+RUN mkdir -p ${Oracle_Home}/domain/jettybase/thirdpartyDrivers/
 ENTRYPOINT [ "./startJetty.sh" ]
