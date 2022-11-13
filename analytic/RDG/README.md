@@ -1,15 +1,20 @@
 # Remote Data Gateway (RDG)
-- Installation binary cannot be executed as root or super user
-  - `# SEVERE [1] com.oracle.cie.nextgen.launcher.Launcher - The current user is root or has superuser privilege. The Oracle Universal Installer cannot continue.`
-- If `-invPtrLoc` not specified, it defaults to `/etc/oraInst.loc`
+[wiki](https://github.com/davidkhala/oracle-PaaS-collection/wiki/Analyic-Remote-Data-Gateway-(RDG))
 
-## Docker build
+## Docker containerize
+Tech notes
+- We read, understand and migrate $Oracle_Home/domain/bin/startJetty.sh to a Dockerfile Entrypoint, in order to
+  - Make it running in front, to fit container design
+  - Make it share the context of Dockerfile, to reuse Env variables
+- system check will failed on docker when `Checking swap space: must be greater than 512 MB.   Actual 0 MB    Failed <<<< `
+  - We use flag `-ignoreSysPrereqs` to skip this checking. 
+- Please make sure your hostPost ${hostPort} is opened in host firewall, to make docker service available to external access.
+- We find a trick to skip website Basic Auth: leave `CREDENTIALS_PAGE_PASSWORD` blank in `silentInstall.response` config file.
+### Docker build
 ```
 export hostPort=8080
 ./docker.sh build
 ```
-Tech notes
-- We have changed the $Oracle_Home/domain/bin/startJetty.sh to make it running in front, to fit container design
-- system check will failed on docker when `Checking swap space: must be greater than 512 MB.   Actual 0 MB    Failed <<<< `
-  - We use flag `-ignoreSysPrereqs` to skip this checking. 
-- Please make sure your hostPost ${hostPort} is opened in host firewall, to make docker service available to external access.
+
+## Docker run
+TBC
