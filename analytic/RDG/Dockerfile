@@ -12,7 +12,7 @@ WORKDIR /home/${USERNAME}/
 
 ENV Oracle_Home=/home/${USERNAME}/${relative_Oracle_Home}
 
-ADD ./silentInstall.response /home/${USERNAME}/
+ADD ./silentInstall.response /home/${USERNAME}/silentInstall.response
 
 RUN echo "ORACLE_HOME=${Oracle_Home}" >> /home/${USERNAME}/silentInstall.response
 

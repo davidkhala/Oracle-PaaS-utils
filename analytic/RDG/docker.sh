@@ -26,11 +26,15 @@ run-mariaDB() {
 }
 
 _test(){
-    host=168.138.163.237
+    if [ -z $host ]; then
+        echo missing env [host]
+        return 1
+    fi
     set +e
     docker stop $Name
     set -e
     docker system prune --force
+    chmod 777 ./silentInstall.response
     build
     run-mariaDB
     docker logs -f analytic-rdg
