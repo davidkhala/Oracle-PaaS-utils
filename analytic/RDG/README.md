@@ -18,3 +18,7 @@ export hostPort=8080
 
 ## Docker run
 TBC
+# License
+Downloading or using Remote Data Gateway indicates you have read the [Oracle Technology Network License Agreement
+](https://www.oracle.com/downloads/licenses/distribution-license.html) carefully and accept the agreement.
+
