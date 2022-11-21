@@ -10,14 +10,16 @@ Tech notes
   - We use flag `-ignoreSysPrereqs` to skip this checking. 
 - Please make sure your hostPost ${hostPort} is opened in host firewall, to make docker service available to external access.
 - We find a trick to skip website Basic Auth: leave `CREDENTIALS_PAGE_PASSWORD` blank in `silentInstall.response` config file.
-### Docker build
+Docker build
 ```
 export hostPort=8080
 ./docker.sh build
 ```
+Docker run
+```
+./docker.sh run
+```
 
-## Docker run
-TBC
 # License
 Downloading or using Remote Data Gateway indicates you have read the [Oracle Technology Network License Agreement
 ](https://www.oracle.com/downloads/licenses/distribution-license.html) carefully and accept the agreement.
