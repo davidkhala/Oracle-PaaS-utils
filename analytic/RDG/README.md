@@ -10,6 +10,8 @@ Tech notes
   - We use flag `-ignoreSysPrereqs` to skip this checking. 
 - Please make sure your hostPost ${hostPort} is opened in host firewall, to make docker service available to external access.
 - We find a trick to skip website Basic Auth: leave `CREDENTIALS_PAGE_PASSWORD` blank in `silentInstall.response` config file.
+
+
 Docker build
 ```
 export hostPort=8080
