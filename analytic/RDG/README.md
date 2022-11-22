@@ -1,5 +1,5 @@
 # Remote Data Gateway (RDG)
-[wiki](https://github.com/davidkhala/oracle-PaaS-collection/wiki/Analyic-Remote-Data-Gateway-(RDG))
+[wiki](https://github.com/davidkhala/oracle-PaaS-collection/wiki/Analyic:-Remote-Data-Gateway-(RDG))
 
 ## Docker containerize
 Tech notes
