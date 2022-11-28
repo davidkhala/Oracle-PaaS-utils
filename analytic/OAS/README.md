@@ -12,3 +12,8 @@ Points need to know more than Launch stack from OCI MarketPlace
         
 - Run [./oas.sh cleanup](https://github.com/davidkhala/oracle-PaaS-collection/blob/main/analytic/OAS/oas.sh) post deploy 
 
+
+[create_oas_domain.sh](https://github.com/davidkhala/oci-oracle-analytics-server/blob/master/terraform/computeinstance/templates/create_oas_domain.sh#L&)
+- -> `/u01/app/Oracle/Middleware/Oracle_Home/bi/bin/config.sh`, in line 98 it go into
+  - -> `/u01/app/Oracle/Middleware/Oracle_Home/oui/mw/common/framework/bin/configinternal.sh`
+  -  --> in line 141, it `java -cp /u01/app/Oracle/Middleware/Oracle_Home/oui/modules/installer-launch.jar oracle.as.install.configlauncher.GLCMConfigLauncher`
